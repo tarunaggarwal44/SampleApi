@@ -8,6 +8,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.10.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sample.Api.Common.Contracts\Sample.Api.Common.Contracts.csproj" />
+    <ProjectReference Include="..\Sample.Api.Common.Logging\Sample.Api.Common.Logging.csproj" />
+    <ProjectReference Include="..\Sample.Api.Common\Sample.Api.Common.csproj" />
+    <ProjectReference Include="..\Sample.Api.Customer.Injections\Sample.Api.Customer.Injections.csproj" />
   </ItemGroup>
 
 

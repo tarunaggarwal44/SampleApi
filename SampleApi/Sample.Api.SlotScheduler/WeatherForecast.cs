@@ -1,6 +1,6 @@
 using System;
 
-namespace Sample.Api.Customer
+namespace Sample.Api.SlotScheduler
 {
     public class WeatherForecast
     {

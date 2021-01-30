@@ -1,15 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
+using Sample.Api.Common.Contracts.Constants;
+using Sample.Api.Customers;
+using Sample.Api.Customers.Injections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Sample.Api.Customer
 {
@@ -25,7 +23,43 @@ namespace Sample.Api.Customer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddHttpContextAccessor();
+
+            Dictionary<string, string> appConfigurations = GetAppConfigurations();
+
+
+            CustomerInjection.CustomerBusinessInjections(services);
+            CustomerInjection.CustomerRepositoryInjections(services, appConfigurations);
+
+
             services.AddControllers();
+
+
+            services.AddOpenApiDocument(config =>
+            {
+                config.PostProcess = document =>
+                {
+                    document.Info.Version = "v1";
+                    document.Info.Title = "Sample Customer API";
+                    document.Info.Description = "Sample Customer API to manage customer data";
+                    document.Info.TermsOfService = "None";
+                    document.Info.Contact = new NSwag.OpenApiContact
+                    {
+                        Name = "TA",
+                        Email = string.Empty,
+                    };
+                    document.Info.License = new NSwag.OpenApiLicense
+                    {
+                        Name = "",
+                    };
+                };
+            });
+
+
+        
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,7 +72,13 @@ namespace Sample.Api.Customer
 
             app.UseHttpsRedirection();
 
+            app.ConfigureGlobalExceptionHandler();
+
             app.UseRouting();
+
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
+
 
             app.UseAuthorization();
 
@@ -46,6 +86,16 @@ namespace Sample.Api.Customer
             {
                 endpoints.MapControllers();
             });
+        }
+
+
+        private Dictionary<string, string> GetAppConfigurations()
+        {
+            Dictionary<string, string> appConfigurations = new Dictionary<string, string>();
+            var sampleConnectionString = Configuration.GetConnectionString(AppConfigurations.SampleSlotDatabase);
+            appConfigurations.Add(AppConfigurations.SampleDatabaseConnectionString, sampleConnectionString);
+
+            return appConfigurations;
         }
     }
 }

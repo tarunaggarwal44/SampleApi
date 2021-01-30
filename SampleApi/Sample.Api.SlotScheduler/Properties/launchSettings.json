@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:65343",
-      "sslPort": 44305
+      "applicationUrl": "http://localhost:65374",
+      "sslPort": 44348
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
@@ -12,12 +12,12 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "swagger/index.html",
+      "launchUrl": "weatherforecast",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Sample.Api.Customer": {
+    "Sample.Api.SlotScheduler": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",
