@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using MySql.Data.MySqlClient;
 using Sample.Api.Common.Contracts.Constants;
 using Sample.Api.Customers.Business;
 using Sample.Api.Customers.Contracts.Interfaces;
@@ -20,7 +21,7 @@ namespace Sample.Api.Customers.Injections
         public static void CustomerRepositoryInjections(IServiceCollection services, Dictionary<string, string> appConfigurations)
         {
             services.AddTransient<ICustomerRepository, CustomerRepository>();
-            services.AddTransient<IDbConnection>((sp) => new SqlConnection(appConfigurations[AppConfigurations.SampleDatabaseConnectionString]));
+            services.AddTransient<IDbConnection>((sp) => new MySqlConnection(appConfigurations[AppConfigurations.SampleDatabaseConnectionString]));
         }
     }
 }

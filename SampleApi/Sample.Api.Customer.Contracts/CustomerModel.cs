@@ -1,4 +1,6 @@
-﻿namespace Sample.Api.Customers.Contracts
+﻿using System.ComponentModel;
+
+namespace Sample.Api.Customers.Contracts
 {
     public class CustomerModel
     {
@@ -6,6 +8,10 @@
 
         public string LastName { get; set; }
         public string Gender { get; set; }
+
+
+        [DefaultValue("a@gmail.com")]
         public string Email { get; set; }
+
     }
 }

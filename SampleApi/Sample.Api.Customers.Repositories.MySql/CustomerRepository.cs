@@ -3,6 +3,7 @@ using Sample.Api.Common.Contracts;
 using Sample.Api.Customers.Contracts;
 using Sample.Api.Customers.Contracts.Interfaces;
 using Sample.Api.Customers.Repositories.Mysql.Enitites;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
@@ -19,8 +20,20 @@ namespace Sample.Api.Customers.Repositories.Mysql
         }
         public async Task<Response<string>> CreateCustomer(CustomerModel customerModel)
         {
-            var customerEntity = EntityFactory.EntityFactory.CreateCustomerEntity(customerModel);
-            await this.connection.InsertAsync<string, CustomerEntity>(customerEntity);
+
+            var parameters = new
+            {
+                Email = customerModel.Email,
+                FirstName = customerModel.FirstName,
+                LastName = customerModel.LastName,
+                Gender = customerModel.Gender,
+                ModifiedDateUtc = DateTime.UtcNow
+            };
+            var sql = @"INSERT INTO sample.customer (Email, FirstName, LastName, Gender, ModifiedDate)
+VALUES(@Email, @FirstName, @LastName, @Gender, @ModifiedDateUtc); ";
+
+            await this.connection.QueryAsync<CustomerEntity>(sql, parameters);
+
             return new Response<string>() { Result = customerModel.Email };
 
         }

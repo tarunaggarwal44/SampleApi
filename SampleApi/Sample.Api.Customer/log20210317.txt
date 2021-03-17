@@ -1,0 +1,22 @@
+01:07 (1.0.0) [Information] (1) Starting web host
+01:07 (1.0.0) [Information] (15) Create Customer Sample.Api.Customers.Contracts.CustomerModel
+01:08 (1.0.0) [Information] (15) Get all Customers
+01:08 (1.0.0) [Information] (1) Starting web host
+01:09 (1.0.0) [Error] (4) The option 'IntegratedSecurity' is not currently supported.
+
+01:10 (1.0.0) [Information] (1) Starting web host
+01:10 (1.0.0) [Information] (4) Create Customer Sample.Api.Customers.Contracts.CustomerModel
+01:10 (1.0.0) [Error] (4) Authentication to host 'localhost' for user 'root' using method 'caching_sha2_password' failed with message: Access denied for user 'root'@'localhost' (using password: NO)
+
+01:16 (1.0.0) [Information] (1) Starting web host
+01:16 (1.0.0) [Information] (4) Create Customer Sample.Api.Customers.Contracts.CustomerModel
+01:16 (1.0.0) [Information] (4) Create Customer Sample.Api.Customers.Contracts.CustomerModel
+01:16 (1.0.0) [Error] (4) You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[customer] ([Email], [FirstName], [LastName], [Gender], [ModifiedDate]) values (' at line 1
+
+01:27 (1.0.0) [Information] (1) Starting web host
+01:28 (1.0.0) [Information] (4) Create Customer Sample.Api.Customers.Contracts.CustomerModel
+01:29 (1.0.0) [Information] (1) Starting web host
+01:30 (1.0.0) [Information] (5) Create Customer Sample.Api.Customers.Contracts.CustomerModel
+01:32 (1.0.0) [Information] (1) Starting web host
+01:37 (1.0.0) [Information] (6) Create Customer Sample.Api.Customers.Contracts.CustomerModel
+01:38 (1.0.0) [Information] (10) Create Customer Sample.Api.Customers.Contracts.CustomerModel
