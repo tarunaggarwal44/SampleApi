@@ -6,13 +6,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Sample.Api.Common.Contracts\Sample.Api.Common.Contracts.csproj" />
     <ProjectReference Include="..\Sample.Api.Customer.Business\Sample.Api.Customer.Business.csproj" />
     <ProjectReference Include="..\Sample.Api.Customer.Contracts\Sample.Api.Customer.Contracts.csproj" />
-    <ProjectReference Include="..\Sample.Api.Customer.Repositories\Sample.Api.Customer.Repositories.csproj" />
+    <ProjectReference Include="..\Sample.Api.Customers.Repositories.MySql\Sample.Api.Customers.Repositories.MySql.csproj" />
   </ItemGroup>
 
 </Project>

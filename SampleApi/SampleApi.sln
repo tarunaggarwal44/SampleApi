@@ -7,31 +7,33 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Api.Customer", "Samp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customer", "Customer", "{F2EFA513-2D2D-4D48-99CB-D973CE5686D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Api.Customer.Contracts", "Sample.Api.Customer.Contracts\Sample.Api.Customer.Contracts.csproj", "{A5D4971B-E91F-4096-9380-CEBF716C0FCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Api.Customer.Contracts", "Sample.Api.Customer.Contracts\Sample.Api.Customer.Contracts.csproj", "{A5D4971B-E91F-4096-9380-CEBF716C0FCC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{64F73349-5053-40F4-9F20-CE2AAABB5691}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Api.Common.Contracts", "Sample.Api.Common.Contracts\Sample.Api.Common.Contracts.csproj", "{846BB650-BAC4-44A8-93E3-10C2D851EEBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Api.Common.Contracts", "Sample.Api.Common.Contracts\Sample.Api.Common.Contracts.csproj", "{846BB650-BAC4-44A8-93E3-10C2D851EEBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Api.Common", "Sample.Api.Common\Sample.Api.Common.csproj", "{FBFEA055-14E9-4190-94F7-927AFB6A70F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Api.Common", "Sample.Api.Common\Sample.Api.Common.csproj", "{FBFEA055-14E9-4190-94F7-927AFB6A70F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Api.Customer.Injections", "Sample.Api.Customer.Injections\Sample.Api.Customer.Injections.csproj", "{434F626F-E5D3-402B-AB7E-6AA76D3903B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Api.Customer.Injections", "Sample.Api.Customer.Injections\Sample.Api.Customer.Injections.csproj", "{434F626F-E5D3-402B-AB7E-6AA76D3903B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Api.Customer.Repositories", "Sample.Api.Customer.Repositories\Sample.Api.Customer.Repositories.csproj", "{3437E006-C07B-4D68-A8FC-CDE31919B017}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Api.Customer.Repositories", "Sample.Api.Customer.Repositories\Sample.Api.Customer.Repositories.csproj", "{3437E006-C07B-4D68-A8FC-CDE31919B017}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Api.Customer.Business", "Sample.Api.Customer.Business\Sample.Api.Customer.Business.csproj", "{5AC7A728-F617-4850-91C3-0DA6D6E6C711}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Api.Customer.Business", "Sample.Api.Customer.Business\Sample.Api.Customer.Business.csproj", "{5AC7A728-F617-4850-91C3-0DA6D6E6C711}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{124441CD-0994-4F4F-8D17-A7DB2A5AB5E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Api.Customer.Business.Tests", "Sample.Api.Customer.Business.Tests\Sample.Api.Customer.Business.Tests.csproj", "{F0632114-428C-4135-966B-3E402D5ACAE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Api.Customer.Business.Tests", "Sample.Api.Customer.Business.Tests\Sample.Api.Customer.Business.Tests.csproj", "{F0632114-428C-4135-966B-3E402D5ACAE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Api.Customer.Repositories.Tests", "Sample.Api.Customer.Repositories.Tests\Sample.Api.Customer.Repositories.Tests.csproj", "{3A62A1E8-006C-4D8C-B596-E05E2160AE2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Api.Customer.Repositories.Tests", "Sample.Api.Customer.Repositories.Tests\Sample.Api.Customer.Repositories.Tests.csproj", "{3A62A1E8-006C-4D8C-B596-E05E2160AE2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Api.Common.Logging", "Sample.Api.Common.Logging\Sample.Api.Common.Logging.csproj", "{D35DD573-03D2-411A-9902-E7088DE0CBA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Api.Common.Logging", "Sample.Api.Common.Logging\Sample.Api.Common.Logging.csproj", "{D35DD573-03D2-411A-9902-E7088DE0CBA4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SlotScheduler", "SlotScheduler", "{8552CE9A-8DED-4548-90C2-7DCD45739373}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Api.SlotScheduler", "Sample.Api.SlotScheduler\Sample.Api.SlotScheduler.csproj", "{B4135FDA-81D1-44AB-873F-97246D6E0BBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Api.SlotScheduler", "Sample.Api.SlotScheduler\Sample.Api.SlotScheduler.csproj", "{B4135FDA-81D1-44AB-873F-97246D6E0BBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Api.Customers.Repositories.MySql", "Sample.Api.Customers.Repositories.MySql\Sample.Api.Customers.Repositories.MySql.csproj", "{C00ECE16-4EF6-4928-91F6-00904B528104}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,10 @@ Global
 		{B4135FDA-81D1-44AB-873F-97246D6E0BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4135FDA-81D1-44AB-873F-97246D6E0BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4135FDA-81D1-44AB-873F-97246D6E0BBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C00ECE16-4EF6-4928-91F6-00904B528104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C00ECE16-4EF6-4928-91F6-00904B528104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C00ECE16-4EF6-4928-91F6-00904B528104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C00ECE16-4EF6-4928-91F6-00904B528104}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,6 +106,7 @@ Global
 		{3A62A1E8-006C-4D8C-B596-E05E2160AE2F} = {124441CD-0994-4F4F-8D17-A7DB2A5AB5E7}
 		{D35DD573-03D2-411A-9902-E7088DE0CBA4} = {64F73349-5053-40F4-9F20-CE2AAABB5691}
 		{B4135FDA-81D1-44AB-873F-97246D6E0BBC} = {8552CE9A-8DED-4548-90C2-7DCD45739373}
+		{C00ECE16-4EF6-4928-91F6-00904B528104} = {F2EFA513-2D2D-4D48-99CB-D973CE5686D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {62009732-96AD-41FA-8FEC-195CE9419F16}

@@ -2,7 +2,7 @@
 using Sample.Api.Common.Contracts.Constants;
 using Sample.Api.Customers.Business;
 using Sample.Api.Customers.Contracts.Interfaces;
-using Sample.Api.Customers.Repositories;
+using Sample.Api.Customers.Repositories.Mysql;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
