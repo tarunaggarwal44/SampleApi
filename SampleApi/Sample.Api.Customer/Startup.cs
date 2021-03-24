@@ -27,11 +27,16 @@ namespace Sample.Api.Customer
             services.AddHttpContextAccessor();
 
             Dictionary<string, string> appConfigurations = GetAppConfigurations();
-
-
             CustomerInjection.CustomerBusinessInjections(services);
             CustomerInjection.CustomerRepositoryInjections(services, appConfigurations);
 
+
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
 
             services.AddControllers();
 
@@ -75,6 +80,9 @@ namespace Sample.Api.Customer
             app.ConfigureGlobalExceptionHandler();
 
             app.UseRouting();
+
+            app.UseCors("MyPolicy");
+
 
             app.UseOpenApi();
             app.UseSwaggerUi3();
