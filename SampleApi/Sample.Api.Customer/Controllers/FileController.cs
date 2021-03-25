@@ -88,7 +88,7 @@ namespace Sample.Api.Customer.Controllers
 
                 BlobHttpHeaders blobHttpHeaders = new BlobHttpHeaders();
                 blobHttpHeaders.ContentType = "image/jpeg";
-                var isMatch = MatchExtension(formFile, ext);
+                //var isMatch = MatchExtension(stream, ext);
 
                 using (var stream = formFile.OpenReadStream())
                 {
