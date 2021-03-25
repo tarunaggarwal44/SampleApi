@@ -141,3 +141,37 @@
    at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
    at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+06:57 (1.0.0) [Information] (1) Starting web host
+06:59 (1.0.0) [Information] (1) Starting web host
+07:00 (1.0.0) [Information] (1) Starting web host
+07:02 (1.0.0) [Information] (1) Starting web host
+07:05 (1.0.0) [Information] (1) Starting web host
+07:13 (1.0.0) [Information] (1) Starting web host
+07:19 (1.0.0) [Information] (1) Starting web host
+09:58 (1.0.0) [Information] (1) Starting web host
+09:58 (1.0.0) [Error] (5) Stream does not support writing.
+
+09:58 (1.0.0) [Information] (1) Starting web host
+10:00 (1.0.0) [Error] (7) The specified blob already exists.
+RequestId:07b6a495-9276-473c-b2f4-03b93f1ed912
+Time:2021-03-24T17:00:12.068Z
+Status: 409 (The specified blob already exists.)
+ErrorCode: BlobAlreadyExists
+
+Headers:
+Server: Azurite-Blob/3.11.0
+x-ms-error-code: BlobAlreadyExists
+x-ms-request-id: 07b6a495-9276-473c-b2f4-03b93f1ed912
+Date: Wed, 24 Mar 2021 17:00:12 GMT
+Connection: keep-alive
+Keep-Alive: REDACTED
+Transfer-Encoding: chunked
+Content-Type: application/xml
+
+
+10:00 (1.0.0) [Information] (1) Starting web host
+22:55 (1.0.0) [Information] (1) Starting web host
+22:55 (1.0.0) [Information] (1) Starting web host
+22:56 (1.0.0) [Information] (1) Starting web host
+23:01 (1.0.0) [Information] (1) Starting web host
+23:05 (1.0.0) [Information] (1) Starting web host
