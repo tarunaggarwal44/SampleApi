@@ -88,9 +88,10 @@ namespace Sample.Api.Customer.Controllers
 
                 BlobHttpHeaders blobHttpHeaders = new BlobHttpHeaders();
                 blobHttpHeaders.ContentType = "image/jpeg";
+                var isMatch = MatchExtension(formFile, ext);
+
                 using (var stream = formFile.OpenReadStream())
                 {
-                    var isMatch = MatchExtension(stream, ext);
                     await blob.UploadAsync(stream, blobHttpHeaders);
                 }
             }
@@ -106,7 +107,7 @@ namespace Sample.Api.Customer.Controllers
         }
 
 
-        private bool MatchExtension(Stream uploadedFileData, string ext)
+        private bool MatchExtension(IFormFile formFile, string ext)
         {
             Dictionary<string, List<byte[]>> _fileSignature =
    new Dictionary<string, List<byte[]>>
@@ -133,21 +134,24 @@ namespace Sample.Api.Customer.Controllers
 
       { ".png", new List<byte[]>
         {
-            new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 },
-            new byte[] { 0xFF, 0xD8, 0xFF, 0xE1 },
-            new byte[] { 0xFF, 0xD8, 0xFF, 0xE8 },
+            new byte[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A },
         }
     },
 };
 
-            using (var reader = new BinaryReader(uploadedFileData))
+            using (var stream = formFile.OpenReadStream())
             {
-                var signatures = _fileSignature[ext];
-                var headerBytes = reader.ReadBytes(signatures.Max(m => m.Length));
+                using (var reader = new BinaryReader(stream))
+                {
+                    var signatures = _fileSignature[ext];
+                    var headerBytes = reader.ReadBytes(signatures.Max(m => m.Length));
 
-                return signatures.Any(signature =>
-                    headerBytes.Take(signature.Length).SequenceEqual(signature));
+                    return signatures.Any(signature =>
+                        headerBytes.Take(signature.Length).SequenceEqual(signature));
+                }
             }
+
+         
         }
 
 
