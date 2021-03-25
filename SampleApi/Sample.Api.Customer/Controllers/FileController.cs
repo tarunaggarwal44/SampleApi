@@ -63,21 +63,34 @@ namespace Sample.Api.Customer.Controllers
 
         public async Task<IActionResult> Put([FromForm(Name = "image")] IFormFile formFile)
         {
+            var a = HttpContext.Request.ContentType;
 
-            if (formFile.Length > 0)
+            string[] permittedExtensions = { ".jpeg", ".jpg", ".png", ".gif" };
+
+            var ext = Path.GetExtension(formFile.FileName).ToLowerInvariant();
+
+            if (string.IsNullOrEmpty(ext) || !permittedExtensions.Contains(ext))
+            {
+                // The extension is invalid ... discontinue processing the file
+            }
+
+            var maxFileSize = 3145728;
+            if (formFile.Length > 0 && formFile.Length < maxFileSize)
             {
                 //var filePath = Path.GetTempFileName();
 
                 string connectionString = "AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;DefaultEndpointsProtocol=http;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1";
                 var containterName = "image";
+                var fileName = "file";
                 BlobContainerClient container = new BlobContainerClient(connectionString, containterName);
 
-                BlobClient blob = container.GetBlobClient(formFile.FileName);
+                BlobClient blob = container.GetBlobClient(fileName);
 
                 BlobHttpHeaders blobHttpHeaders = new BlobHttpHeaders();
-                blobHttpHeaders.ContentType = "image/png";
+                blobHttpHeaders.ContentType = "image/jpeg";
                 using (var stream = formFile.OpenReadStream())
                 {
+                    var isMatch = MatchExtension(stream, ext);
                     await blob.UploadAsync(stream, blobHttpHeaders);
                 }
             }
@@ -91,5 +104,53 @@ namespace Sample.Api.Customer.Controllers
             return this.CreatePutHttpResponse(updateProfilePicture);
 
         }
+
+
+        private bool MatchExtension(Stream uploadedFileData, string ext)
+        {
+            Dictionary<string, List<byte[]>> _fileSignature =
+   new Dictionary<string, List<byte[]>>
+{
+    { ".jpeg", new List<byte[]>
+        {
+            new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 },
+            new byte[] { 0xFF, 0xD8, 0xFF, 0xE2 },
+            new byte[] { 0xFF, 0xD8, 0xFF, 0xE3 },
+        }
+    },
+    { ".jpg", new List<byte[]>
+        {
+            new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 },
+            new byte[] { 0xFF, 0xD8, 0xFF, 0xE1 },
+            new byte[] { 0xFF, 0xD8, 0xFF, 0xE8 },
+        }
+    },
+      { ".gif", new List<byte[]>
+        {
+            new byte[] { 0x47, 0x49, 0x46, 0x38 },
+        }
+    },
+
+      { ".png", new List<byte[]>
+        {
+            new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 },
+            new byte[] { 0xFF, 0xD8, 0xFF, 0xE1 },
+            new byte[] { 0xFF, 0xD8, 0xFF, 0xE8 },
+        }
+    },
+};
+
+            using (var reader = new BinaryReader(uploadedFileData))
+            {
+                var signatures = _fileSignature[ext];
+                var headerBytes = reader.ReadBytes(signatures.Max(m => m.Length));
+
+                return signatures.Any(signature =>
+                    headerBytes.Take(signature.Length).SequenceEqual(signature));
+            }
+        }
+
+
+
     }
 }
