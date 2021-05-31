@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentValidation;
+using FluentValidation.Results;
 using Sample.Api.Common.Contracts;
 using Sample.Api.Common.Contracts.Constants;
 using Sample.Api.Customers.Business.Validations;
@@ -13,15 +14,18 @@ namespace Sample.Api.Customers.Business
     public class CustomerBusiness : ICustomerBusiness
     {
         private readonly ICustomerRepository customerRepository;
-        public CustomerBusiness(ICustomerRepository customerRepository)
+        private readonly IValidator<CustomerModel> customerValidator;
+        public CustomerBusiness(ICustomerRepository customerRepository, IValidator<CustomerModel> customerValidator)
         {
             this.customerRepository = customerRepository;
+            this.customerValidator = customerValidator;
         }
 
         public async Task<Response<string>> CreateCustomer(CustomerModel customerModel)
         {
-            var validator = new CustomerValidator();
-            ValidationResult results = validator.Validate(customerModel);
+            //var validator = new CustomerValidator();
+            //ValidationResult results = validator.Validate(customerModel);
+            ValidationResult results = this.customerValidator.Validate(customerModel);
 
             if (results.IsValid)
                 return await customerRepository.CreateCustomer(customerModel);
