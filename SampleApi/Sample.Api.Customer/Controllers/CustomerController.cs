@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Sample.Api.Common;
+using Sample.Api.Common.Contracts.Events;
+using Sample.Api.Customer.Contracts;
 using Sample.Api.Customers.Contracts;
 using Sample.Api.Customers.Contracts.Interfaces;
 using Serilog;
@@ -15,6 +18,7 @@ namespace Sample.Api.Customers.Controllers
     [ApiController]
     public class CustomerController : BaseApiController
     {
+        private readonly IMediator mediator;
         private readonly ICustomerBusiness customerBusiness;
 
         /// <summary>
@@ -22,9 +26,10 @@ namespace Sample.Api.Customers.Controllers
         /// </summary>
         /// <param name="customerBusiness">customer Business</param>
         /// <param name="customerRepository">The customer repository</param>
-        public CustomerController(ICustomerBusiness customerBusiness)
+        public CustomerController(ICustomerBusiness customerBusiness, IMediator mediator)
         {
             this.customerBusiness = customerBusiness;
+            this.mediator = mediator;
         }
 
         //GET: api/<CustomerController>
@@ -50,6 +55,9 @@ namespace Sample.Api.Customers.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CustomerModel customerModel)
         {
+            BaseDomainEvent baseDomainEvent = new CustomerCreatedDomainEvent(customerModel);
+            await this.mediator.Publish(baseDomainEvent);
+
             Log.Information("Create Customer " + customerModel);
             var customerResponse = await customerBusiness.CreateCustomer(customerModel);
             return this.CreatePostHttpResponse(customerResponse);

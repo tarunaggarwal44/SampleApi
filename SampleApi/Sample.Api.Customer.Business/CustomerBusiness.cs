@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using MediatR;
 using Sample.Api.Common.Contracts;
 using Sample.Api.Common.Contracts.Constants;
 using Sample.Api.Customers.Business.Validations;
@@ -13,21 +14,32 @@ namespace Sample.Api.Customers.Business
     public class CustomerBusiness : ICustomerBusiness
     {
         private readonly ICustomerRepository customerRepository;
-        public CustomerBusiness(ICustomerRepository customerRepository)
+        private readonly IMediator mediator;
+        public CustomerBusiness(ICustomerRepository customerRepository, IMediator mediator)
         {
             this.customerRepository = customerRepository;
+            this.mediator = mediator;
         }
 
         public async Task<Response<string>> CreateCustomer(CustomerModel customerModel)
         {
+            customerModel.CreateCustomer();
+            await this.mediator.Publish(customerModel.Events[0]);
+
             var validator = new CustomerValidator();
             ValidationResult results = validator.Validate(customerModel);
 
             if (results.IsValid)
-                return await customerRepository.CreateCustomer(customerModel);
+            {
+                var id = await customerRepository.CreateCustomer(customerModel);
+                
+                
+
+                return id;
+            }
 
             else
-                return new Response<string>() { ResultType = ResultType.ValidationError, Messages = results.Errors.Select(a=>a.ErrorMessage).ToList() };
+                return new Response<string>() { ResultType = ResultType.ValidationError, Messages = results.Errors.Select(a => a.ErrorMessage).ToList() };
         }
 
         public async Task<Response<bool>> DeleteCustomer(string email)
