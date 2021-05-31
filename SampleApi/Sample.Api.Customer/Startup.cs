@@ -41,7 +41,12 @@ namespace Sample.Api.Customer
 
             services.AddHttpContextAccessor();
 
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            //services.AddMediatR(Assembly.GetExecutingAssembly());
+
+
+            services.AddMediatR(typeof(CustomerCreatedNotificationHandler).Assembly, 
+                typeof(CustomerCreatedNotificationHandler1).Assembly);
+            //services.AddMediatR(typeof(SomeHandler).Assembly, typeof(SomeOtherHandler).Assembly);
             //services.AddTransient<INotification, CustomerCreatedNotificationHandler> ();
 
             //services.AddMediatR(Assembly.GetExecutingAssembly());

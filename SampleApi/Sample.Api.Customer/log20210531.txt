@@ -110,3 +110,9 @@ System.AggregateException: Some services are not able to be constructed (Error w
 23:27 (1.0.0) [Information] (1) Starting web host
 23:30 (1.0.0) [Information] (1) Starting web host
 23:31 (1.0.0) [Information] (1) Starting web host
+23:32 (1.0.0) [Information] (1) Starting web host
+23:34 (1.0.0) [Information] (1) Starting web host
+23:39 (1.0.0) [Information] (1) Starting web host
+23:41 (1.0.0) [Information] (1) Starting web host
+23:44 (1.0.0) [Information] (1) Starting web host
+23:45 (1.0.0) [Information] (4) Create Customer Sample.Api.Customers.Contracts.CustomerModel

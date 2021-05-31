@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Sample.Api.Common;
 using Sample.Api.Common.Contracts.Events;
 using Sample.Api.Customer.Contracts;
+using Sample.Api.Customer.Contracts.Events;
 using Sample.Api.Customers.Contracts;
 using Sample.Api.Customers.Contracts.Interfaces;
 using Serilog;
@@ -56,7 +57,10 @@ namespace Sample.Api.Customers.Controllers
         public async Task<IActionResult> Post([FromBody] CustomerModel customerModel)
         {
             BaseDomainEvent baseDomainEvent = new CustomerCreatedDomainEvent(customerModel);
+            BaseDomainEvent baseDomainEvent1 = new CustomerCreatedDomainEvent1(customerModel);
             await this.mediator.Publish(baseDomainEvent);
+            await this.mediator.Publish(baseDomainEvent1);
+
 
             Log.Information("Create Customer " + customerModel);
             var customerResponse = await customerBusiness.CreateCustomer(customerModel);

@@ -2,6 +2,9 @@
 using MediatR;
 using Sample.Api.Common.Contracts;
 using Sample.Api.Common.Contracts.Constants;
+using Sample.Api.Common.Contracts.Events;
+using Sample.Api.Customer.Contracts;
+using Sample.Api.Customer.Contracts.Events;
 using Sample.Api.Customers.Business.Validations;
 using Sample.Api.Customers.Contracts;
 using Sample.Api.Customers.Contracts.Interfaces;
@@ -23,8 +26,14 @@ namespace Sample.Api.Customers.Business
 
         public async Task<Response<string>> CreateCustomer(CustomerModel customerModel)
         {
+            BaseDomainEvent baseDomainEvent = new CustomerCreatedDomainEvent(customerModel);
+            BaseDomainEvent baseDomainEvent1 = new CustomerCreatedDomainEvent1(customerModel);
+            await this.mediator.Publish(baseDomainEvent);
+            await this.mediator.Publish(baseDomainEvent1);
+
             customerModel.CreateCustomer();
-            await this.mediator.Publish(customerModel.Events[0]);
+            //await this.mediator.Publish(customerModel.Events[0]);
+            //await this.mediator.Publish(customerModel.Events[0]);
 
             var validator = new CustomerValidator();
             ValidationResult results = validator.Validate(customerModel);
