@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sample.Api.Common.Contracts.Events
 {
-    public abstract class BaseDomainEvent : INotification
+    public  abstract class BaseDomainEvent : INotification
     {
         private DateTime dateOccurred;
         public BaseDomainEvent()

@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.EventGrid;
+using Microsoft.Azure.EventGrid.Models;
 using Sample.Api.Common;
 using Sample.Api.Common.Contracts.Events;
 using Sample.Api.Customer.Contracts;
@@ -7,6 +9,8 @@ using Sample.Api.Customer.Contracts.Events;
 using Sample.Api.Customers.Contracts;
 using Sample.Api.Customers.Contracts.Interfaces;
 using Serilog;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
@@ -58,13 +62,39 @@ namespace Sample.Api.Customers.Controllers
         {
             BaseDomainEvent baseDomainEvent = new CustomerCreatedDomainEvent(customerModel);
             BaseDomainEvent baseDomainEvent1 = new CustomerCreatedDomainEvent1(customerModel);
-            await this.mediator.Publish(baseDomainEvent);
-            await this.mediator.Publish(baseDomainEvent1);
 
 
-            Log.Information("Create Customer " + customerModel);
+
+            string topicEndpoint = "https://demotopic.westus2-1.eventgrid.azure.net/api/events";
+
+            string topicKey = "gJmktgoe6OFcrMPKT/4WvZcIBrKZt5Zz08K8ZmYwy2s=";
+
+            string topicHostname = new Uri(topicEndpoint).Host;
+            TopicCredentials topicCredentials = new TopicCredentials(topicKey);
+            EventGridClient client = new EventGridClient(topicCredentials);
+
+            await client.PublishEventsAsync(topicHostname, GetEventsList(baseDomainEvent));
+
+
             var customerResponse = await customerBusiness.CreateCustomer(customerModel);
             return this.CreatePostHttpResponse(customerResponse);
+        }
+
+
+        private IList<EventGridEvent> GetEventsList(BaseDomainEvent baseDomainEvent)
+        {
+            List<EventGridEvent> eventsList = new List<EventGridEvent>();
+            eventsList.Add(new EventGridEvent()
+            {
+                Id = Guid.NewGuid().ToString(),
+                EventType = "Contoso.Items.ItemReceived",
+                Data = baseDomainEvent,
+                EventTime = DateTime.Now,
+                Subject = "Door1",
+                DataVersion = "2.0"
+            });
+
+            return eventsList;
         }
 
         // PUT api/<CustomerController>/5
