@@ -40,18 +40,10 @@ namespace Sample.Api.Customers.Controllers
             var defaultCurrentCulture = CultureInfo.DefaultThreadCurrentCulture;
             var defaultCurrentUICulture = CultureInfo.DefaultThreadCurrentUICulture;
 
-            try
-            {
-                int i = 0;
-                int j = 0;
-                int k = i / j;
-            }
+            var culture = CultureInfo.CreateSpecificCulture("en");
 
 
-            catch(Exception ex)
-            {
-
-            }
+      
 
             Log.Information("Get all Customers");
             var customerResponse = await customerBusiness.GetAllCustomers();

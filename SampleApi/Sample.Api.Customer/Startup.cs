@@ -87,6 +87,7 @@ namespace Sample.Api.Customer
                 .AddSupportedCultures(supportedCultures)
                 .AddSupportedUICultures(supportedCultures);
 
+            localizationOptions.ApplyCurrentCultureToResponseHeaders = true;
             app.UseRequestLocalization(localizationOptions);
 
             //app.UseRequestLocalization(options => {
