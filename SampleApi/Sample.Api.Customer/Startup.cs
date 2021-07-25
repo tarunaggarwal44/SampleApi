@@ -82,6 +82,25 @@ namespace Sample.Api.Customer
 
             app.UseAuthorization();
 
+            var supportedCultures = new[] { "fr-FR", "en-GB", "en-IN" };
+            var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[2])
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
+
+            app.UseRequestLocalization(localizationOptions);
+
+            //app.UseRequestLocalization(options => {
+            //    string[] supportedCultures = { "sv-SE", "en-US",
+            //                                    "fr-FR" };
+
+            //    options.SetDefaultCulture("en-GB");
+
+            //    options.AddSupportedCultures(supportedCultures);
+            //    options.AddSupportedUICultures(supportedCultures);
+            //    options.ApplyCurrentCultureToResponseHeaders = true;
+            //});
+
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

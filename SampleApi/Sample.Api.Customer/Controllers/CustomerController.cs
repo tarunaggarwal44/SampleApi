@@ -3,6 +3,8 @@ using Sample.Api.Common;
 using Sample.Api.Customers.Contracts;
 using Sample.Api.Customers.Contracts.Interfaces;
 using Serilog;
+using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 
@@ -31,6 +33,26 @@ namespace Sample.Api.Customers.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            //var culture = CultureInfo.CreateSpecificCulture("en-gb");
+       
+            var currentCulture = CultureInfo.CurrentCulture;
+            var currentUICulture = CultureInfo.CurrentUICulture;
+            var defaultCurrentCulture = CultureInfo.DefaultThreadCurrentCulture;
+            var defaultCurrentUICulture = CultureInfo.DefaultThreadCurrentUICulture;
+
+            try
+            {
+                int i = 0;
+                int j = 0;
+                int k = i / j;
+            }
+
+
+            catch(Exception ex)
+            {
+
+            }
+
             Log.Information("Get all Customers");
             var customerResponse = await customerBusiness.GetAllCustomers();
             return this.CreateGetHttpResponse(customerResponse);
