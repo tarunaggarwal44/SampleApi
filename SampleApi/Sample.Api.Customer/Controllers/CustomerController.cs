@@ -34,7 +34,9 @@ namespace Sample.Api.Customers.Controllers
         public async Task<IActionResult> Get()
         {
             //var culture = CultureInfo.CreateSpecificCulture("en-gb");
-       
+
+            decimal price = 2;
+            var aa = price.ToString("C");
             var currentCulture = CultureInfo.CurrentCulture;
             var currentUICulture = CultureInfo.CurrentUICulture;
             var defaultCurrentCulture = CultureInfo.DefaultThreadCurrentCulture;
@@ -43,7 +45,7 @@ namespace Sample.Api.Customers.Controllers
             var culture = CultureInfo.CreateSpecificCulture("en");
 
 
-      
+
 
             Log.Information("Get all Customers");
             var customerResponse = await customerBusiness.GetAllCustomers();
