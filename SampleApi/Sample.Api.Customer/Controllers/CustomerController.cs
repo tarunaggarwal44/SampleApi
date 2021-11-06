@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Sample.Api.Common;
+using Sample.Api.Customer;
 using Sample.Api.Customers.Contracts;
 using Sample.Api.Customers.Contracts.Interfaces;
 using Serilog;
@@ -16,22 +18,32 @@ namespace Sample.Api.Customers.Controllers
     public class CustomerController : BaseApiController
     {
         private readonly ICustomerBusiness customerBusiness;
+        private readonly ILogger<CustomerController> _logger;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomerController"/> class. 
         /// </summary>
         /// <param name="customerBusiness">customer Business</param>
         /// <param name="customerRepository">The customer repository</param>
-        public CustomerController(ICustomerBusiness customerBusiness)
+        public CustomerController(ICustomerBusiness customerBusiness, ILogger<CustomerController> logger)
         {
             this.customerBusiness = customerBusiness;
+            this._logger = logger;
         }
 
         //GET: api/<CustomerController>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            Log.Information("Get all Customers");
+            Student student = new Student();
+            student.FirstName = "TA";
+            student.LastName = "LA";
+
+            _logger.LogInformation("Student1 {@student}", student);
+            //Log.Information("Student2 {@student}", student);
+
+            //Log.Information("Get all Customers");
             var customerResponse = await customerBusiness.GetAllCustomers();
             return this.CreateGetHttpResponse(customerResponse);
         }
